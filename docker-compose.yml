@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  mongo-db:
+    image: mongo:8.0.12
+    container_name: mongo-db
+
+    ports:
+      - 27017:27017
+
+    volumes:
+      - ./database:/data/db
+
+    restart: always
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    
+    container_name: backend
+    
+    ports:
+      - 8000:8000
+
+    depends_on:
+      - mongo-db
+
+    environment:
+      - MON_URI=mongodb://root:root@mongo-db:27017/stenos
+
+volumes:
+  database:
