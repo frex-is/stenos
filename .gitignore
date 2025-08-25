@@ -1,0 +1,6 @@
+./database
+./backend/stenos_backend.egg-info
+./backend/.venv
+./backend/.idea
+
+./backend/.env
