@@ -7,3 +7,4 @@ class UserResponse(BaseModel):
     last_name: str
     email: str
     is_verified: bool
+    hashed_password: str

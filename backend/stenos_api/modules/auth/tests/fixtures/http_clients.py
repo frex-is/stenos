@@ -8,12 +8,13 @@ from stenos_api.modules.users.services.user_services import UserService
 @fixture
 def auth_api_client(mock_user_service, mock_auth_service):
     from fastapi import FastAPI
-    from stenos_api.modules.auth.routes import auth_router
+    from stenos_api.modules.auth.routes.router import auth_router
 
     application = FastAPI()
-    application.include_router(auth_router)
 
-    # overrides here, on the FastAPI app (not TestClient!)
+    application.include_router(auth_router)
+    # TODO refactor this
+
     async def override_user_service():
         return mock_user_service
 

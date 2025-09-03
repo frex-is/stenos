@@ -1,8 +1,7 @@
-from fastapi import Depends, status, HTTPException
+from fastapi import Depends, status, HTTPException, APIRouter
 
 from stenos_api.core.configurations.logging import logger
 
-from . import auth_router
 from stenos_api.modules.auth.schemas.requests.register import RegisterRequest
 from stenos_api.modules.auth.services.auth_service import AuthService
 from stenos_api.modules.auth.schemas.responses.register_successful import RegisterSuccessful
@@ -12,8 +11,9 @@ from stenos_api.modules.users.services.user_services import UserService
 from stenos_api.modules.users.errors.user_already_exists import UserAlreadyExists
 from stenos_api.modules.users.schemas.requests.user_create import UserCreate
 
+register_router = APIRouter(tags=["auth"])
 
-@auth_router.post(
+@register_router.post(
     AuthRoutes.REGISTER,
     response_model=RegisterSuccessful, 
     status_code=status.HTTP_201_CREATED,

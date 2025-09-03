@@ -10,5 +10,6 @@ def valid_user_response() -> UserResponse:
         email="john.smith@example.com",
         first_name="John",
         last_name="Smith",
-        is_verified=False
+        is_verified=False,
+        hashed_password="hashed_password"
     )
