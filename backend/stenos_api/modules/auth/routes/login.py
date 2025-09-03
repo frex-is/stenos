@@ -65,8 +65,9 @@ async def login(
             detail=InvalidCredentials.DETAIL
         )
 
-    # access_token=auth_service.create_access_token_for_user(user)
-
     return LoginSuccessful(
-        user_id=user.id
+        user_id=user.id,
+        access_token=auth_service.create_access_token_for_user(user),
+        refresh_token=auth_service.create_refresh_token_for_user(user),
+        expires_in=auth_service.ACCESS_TOKEN_EXPIRE_MINUTES
     )
