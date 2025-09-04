@@ -67,7 +67,7 @@ async def login(
 
     return LoginSuccessful(
         user_id=user.id,
-        access_token=auth_service.create_access_token_for_user(user),
-        refresh_token=auth_service.create_refresh_token_for_user(user),
+        access_token=await auth_service.create_access_token_for_user(user),
+        refresh_token=await auth_service.create_refresh_token_for_user(user),
         expires_in=auth_service.ACCESS_TOKEN_EXPIRE_MINUTES
     )

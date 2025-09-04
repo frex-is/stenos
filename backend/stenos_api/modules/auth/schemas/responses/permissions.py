@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import List
 
-class Permissions:
+class Permissions(BaseModel):
     roles: List[str] = Field(
         default_factory=list,
         description="List of user's global roles",
